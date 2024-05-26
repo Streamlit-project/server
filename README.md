@@ -116,7 +116,7 @@ For launch the project, you have to install python. Go to see https://www.python
    streamlit run app.py
    ```
 4. Enjoy our application 🤠
-  
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -164,6 +164,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Romain Fillot - romain.fillot630@gmail.com
+
+Théo Dupin - theo.dupin03300.pro@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
