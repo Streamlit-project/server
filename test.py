@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 df = pd.read_csv('netflix.csv')
-df = df.replace('Unknown', np.nan)
+
+df.describe()
 
 print(df.isnull())

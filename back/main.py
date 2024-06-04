@@ -2,3 +2,5 @@
 #####  Fonction Back-end  ######
 ################################
 
+def my_fonction():
+    return 3

@@ -3,8 +3,8 @@ import streamlit as st
 
 def csvLoad_menu():
     # Show a navigation menu for authenticated users
-    st.sidebar.page_link("main.py", label="Load/Exploration data")
-    st.sidebar.page_link("pages/clean-data.py", label="Clean data")
+    st.sidebar.page_link("main.py", label="I. Load/Exploration data")
+    st.sidebar.page_link("pages/clean-data.py", label="II. Clean data")
     # if st.session_state.step in ["admin", "super-admin"]:
     #     st.sidebar.page_link("pages/admin.py", label="Manage users")
     #     st.sidebar.page_link(
@@ -16,7 +16,7 @@ def csvLoad_menu():
 
 def csvNotLoad_menu():
     # Show a navigation menu for unauthenticated users
-    st.sidebar.page_link("main.py", label="Load dataset")
+    st.sidebar.page_link("main.py", label="I. Load dataset")
 
 
 def menu():
