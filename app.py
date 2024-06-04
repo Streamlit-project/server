@@ -165,7 +165,9 @@ if csv_file is not None:
           target_columns = st.multiselect('Select target columns with missing values', df.select_dtypes(include=['number']).columns)
 
           if len(target_columns) == 0:
-              st.warning("Aucune colonne cible sélectionnée.")
+              st.warning("No target columns selected.")
+          elif len(feature_columns) == 0:
+              st.warning("No feature columns selected.")
           else:
               X = df[feature_columns]
               y = df[target_columns]
