@@ -1,13 +1,12 @@
 import numpy as np
+from sklearn.impute import KNNImputer, SimpleImputer
+from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 import streamlit as st
 from menu import menu
 import pandas as pd
 from st_aggrid import AgGrid
-from sklearn.linear_model import LinearRegression
-from sklearn.impute import KNNImputer
-from sklearn.impute import SimpleImputer
 
 # Initialize st.session_state.role and st.session_state.role to None
 if "step" not in st.session_state:
@@ -23,7 +22,7 @@ def show_data():
 ### 1. Exploration des données
 ## Upload CSV
 st.subheader('Input CSV')
-uploaded_file = st.file_uploader("Choose a file", type="csv")
+uploaded_file = st.file_uploader("Choose a file")
 
 if uploaded_file is not None:
     file_extension = uploaded_file.name.split('.')[-1]
@@ -191,15 +190,3 @@ if csv_file is not None:
                       st.warning(f"Aucune valeur manquante trouvée dans {col}. Pas besoin d'imputer.")
 
               st.write(df)
-        
-
-      
-      
-
-
-      
-
-      
-
-      
-
