@@ -3,7 +3,7 @@ import streamlit as st
 
 def csvLoad_menu():
     # Show a navigation menu for authenticated users
-    st.sidebar.page_link("app.py", label="Load/Exploration data")
+    st.sidebar.page_link("main.py", label="Load/Exploration data")
     st.sidebar.page_link("pages/clean-data.py", label="Clean data")
     # if st.session_state.step in ["admin", "super-admin"]:
     #     st.sidebar.page_link("pages/admin.py", label="Manage users")
@@ -16,7 +16,7 @@ def csvLoad_menu():
 
 def csvNotLoad_menu():
     # Show a navigation menu for unauthenticated users
-    st.sidebar.page_link("app.py", label="Load dataset")
+    st.sidebar.page_link("main.py", label="Load dataset")
 
 
 def menu():
@@ -32,5 +32,5 @@ def menu_with_redirect():
     # Redirect users to the main page if not logged in, otherwise continue to
     # render the navigation menu
     if "step" not in st.session_state or st.session_state.step is None:
-        st.switch_page("app.py")
+        st.switch_page("main.py")
     menu()

@@ -1,3 +1,7 @@
+################################
+#####  Fonction Front-end  ######
+################################
+
 import streamlit as st
 from menu import menu
 import pandas as pd
@@ -7,6 +11,7 @@ from st_aggrid import AgGrid
 if "step" not in st.session_state:
     st.session_state.step = None
     st.session_state.dataset = None
+    st.session_state.optionmissingvalue = None
 
 def show_data():
     st.subheader('Dataset')
@@ -17,7 +22,7 @@ def show_data():
 ### 1. Exploration des données
 ## Upload CSV
 st.subheader('Input CSV')
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file", type="csv")
 
 if uploaded_file is not None:
     file_extension = uploaded_file.name.split('.')[-1]
@@ -33,3 +38,7 @@ if st.session_state.dataset is not None:
     show_data()
 
 menu()
+      
+
+      
+
