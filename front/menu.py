@@ -4,7 +4,7 @@ import streamlit as st
 def csvLoad_menu():
     # Show a navigation menu for authenticated users
     st.sidebar.page_link("main.py", label="Load/Exploration data")
-    st.sidebar.page_link("pages/clean-data.py", label="Clean data")
+    st.sidebar.page_link("clean-data.py", label="Clean data")
     # if st.session_state.step in ["admin", "super-admin"]:
     #     st.sidebar.page_link("pages/admin.py", label="Manage users")
     #     st.sidebar.page_link(

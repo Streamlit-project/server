@@ -3,7 +3,7 @@
 ################################
 
 import streamlit as st
-from menu import menu
+from front.menu import menu
 import pandas as pd
 from st_aggrid import AgGrid
 
