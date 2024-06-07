@@ -4,6 +4,15 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 import streamlit as st
+
+import sys
+from pathlib import Path # if you haven't already done so
+file = Path(__file__).resolve()
+parent, root = file.parent, file.parents[1]
+sys.path.append(str(root))
+
+from back.main import load_csv
+
 from menu import menu
 import pandas as pd
 from st_aggrid import AgGrid
@@ -41,17 +50,8 @@ menu()
 
 ### 2. Data pre-processing and cleaning
 st.subheader('2. Data Pre-processing and Cleaning')
-def load_csv(file):
-    try:
-        df = pd.read_csv(file)
-        return df
-    except pd.errors.EmptyDataError:
-        st.error('Le fichier CSV est vide.')
-    except pd.errors.ParserError:
-        st.error('Erreur lors de la lecture du fichier CSV.')
-    except Exception as e:
-        st.error(f'Une erreur inattendue est survenue : {e}')
-    return None
+
+
 
 csv_file = st.file_uploader("Choose a CSV file to clean", type="csv")
 
