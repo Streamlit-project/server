@@ -97,3 +97,4 @@ if df is not None:
             st.pyplot(fig)
             st.write(colum)
 
+    st.session_state.df_cleaned = df_cleaned
