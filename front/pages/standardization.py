@@ -55,5 +55,5 @@ else:
         st.error('Invalid standardization method')
         exit()
 
-    hist_plot('Histogram of standardized data')
+    hist_plot()
     box_plot()

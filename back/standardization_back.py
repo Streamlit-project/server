@@ -33,14 +33,14 @@ def robust_standardization(df):
     scaler.fit(df)
     return pd.DataFrame(scaler.transform(df), columns=df.columns)
 
-def hist_plot(title):
+def hist_plot():
     df = st.session_state.df_normalized
     fig, ax = plt.subplots()
     for column in df.columns:
         if pd.isnull(df[column]).all():
             continue
         ax.hist(df[column], bins=50, alpha=0.5, label=column)
-    ax.set_title(title)
+    ax.set_title('Histogram of standardized data')
     ax.legend()
     st.pyplot(fig)
 
