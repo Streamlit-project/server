@@ -18,3 +18,28 @@ def min_max_standardization(df):
 def z_score_standardization(df):
     df = deleteNoneNumberColumns(df)
     return (df - df.mean()) / df.std()
+
+def robust_standardization(df):
+    df = deleteNoneNumberColumns(df)
+    scaler = pp.RobustScaler()
+    scaler.fit(df)
+    return pd.DataFrame(scaler.transform(df), columns=df.columns)
+
+def hist_plot(title):
+    df = st.session_state.df_normalized
+    fig, ax = plt.subplots()
+    for column in df.columns:
+        if pd.isnull(df[column]).all():
+            continue
+        ax.hist(df[column], bins=50, alpha=0.5, label=column)
+    ax.set_title(title)
+    ax.legend()
+    st.pyplot(fig)
+
+def box_plot():
+    df = st.session_state.df_normalized
+    fig, ax = plt.subplots()
+    ax.boxplot(df.values, labels=df.columns)
+    ax.set_ylabel('Standardized values')
+    ax.set_title('Boxplot of standardized data')
+    st.pyplot(fig)
