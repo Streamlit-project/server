@@ -50,7 +50,6 @@ if uploaded_file is not None:
 if st.session_state.dataset is not None:
     show_data()
 
-my_fonction()
 menu()
       
 
