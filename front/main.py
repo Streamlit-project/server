@@ -29,6 +29,9 @@ import numpy as np
 if "step" not in st.session_state:
     st.session_state.step = None
     st.session_state.dataset = None
+    
+if "option_missing_value" not in st.session_state:
+    st.session_state.option_missing_value = 'Yes'
 
 ### 1. Exploration des données
 ## Upload CSV

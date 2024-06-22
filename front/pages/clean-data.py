@@ -28,10 +28,15 @@ if df is not None:
       df = df.replace('unknown', None)
       st.write(df.apply(lambda x: x.isin([None, np.nan]).sum()))
 
-      st.header('Do you want to remove missing values ?')
-      option = st.selectbox('Select yes or no', ('Yes', 'No'))
+      st.header('Do you want to remove missing values ?')      
+      st.session_state.option_missing_value = st.selectbox(
+        'Select yes or no',
+        ('Yes', 'No'),
+        index=('Yes', 'No').index(st.session_state.option_missing_value),
+        key="selectbox_missing_value"
+      )
 
-      if(option == 'Yes'):
+      if(st.session_state.option_missing_value == 'Yes'):
         # Options to handle missing values
         st.subheader('Handle Missing Values')
         missing_value_action = st.radio(
