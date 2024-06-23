@@ -35,6 +35,15 @@ if "option_missing_value" not in st.session_state:
 
 if "standardisation_method" not in st.session_state:
     st.session_state.standardisation_method = 'Min-Max'
+    
+if "missing_value_action" not in st.session_state:
+    st.session_state.missing_value_action = 'Remove Rows'
+    
+if "string_options" not in st.session_state:
+    st.session_state.string_options = 'Yes, with Mode'
+    
+if "replace_option" not in st.session_state:
+    st.session_state.replace_option = 'Median'
 
 ### 1. Exploration des données
 ## Upload CSV
