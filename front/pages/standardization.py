@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from back.standardization_back import min_max_standardization, z_score_standardization, robust_standardization, hist_plot, box_plot
 
+
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
 
