@@ -1,4 +1,4 @@
-from sklearn.linear_model import SGDClassifier, SGDRegressor
+from sklearn.linear_model import SGDClassifier, SGDRegressor, Ridge, Lasso
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
@@ -39,6 +39,26 @@ def SGDRegressor_prediction(df, target, loss, penalty, alpha, max_iter, tol, tes
     y = df[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
     reg = SGDRegressor(loss=loss, penalty=penalty, alpha=alpha, max_iter=max_iter, tol=tol)
+    reg.fit(X_train, y_train)
+    y_pred = reg.predict(X_test)
+    
+    return {'r2_score' : r2_score(y_test, y_pred), 'mean_squared_error': mean_squared_error(y_test, y_pred)}
+
+def RidgeRegressor_prediction(df, target, alpha, fit_intercept, max_iter, tol, test_size):
+    X = df.drop(columns=[target])
+    y = df[target]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
+    reg = Ridge(alpha=alpha, max_iter=max_iter, tol=tol, fit_intercept=fit_intercept)
+    reg.fit(X_train, y_train)
+    y_pred = reg.predict(X_test)
+    
+    return {'r2_score' : r2_score(y_test, y_pred), 'mean_squared_error': mean_squared_error(y_test, y_pred)}
+
+def LassoRegressor_prediction(df, target, alpha, fit_intercept, max_iter, tol, test_size):
+    X = df.drop(columns=[target])
+    y = df[target]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
+    reg = Lasso(alpha=alpha, max_iter=max_iter, tol=tol, fit_intercept=fit_intercept)
     reg.fit(X_train, y_train)
     y_pred = reg.predict(X_test)
     

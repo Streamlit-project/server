@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 from st_aggrid import AgGrid
 import pandas as pd
 import numpy as np
-from back.prediction_back import SGDClassifier_prediction, RandomForest_prediction, KNN_prediction, SGDRegressor_prediction
+from back.prediction_back import SGDClassifier_prediction, RandomForest_prediction, KNN_prediction, SGDRegressor_prediction, RidgeRegressor_prediction, LassoRegressor_prediction
 
 st.header('Prediction')
+
+# Classification algorithms
 
 def SGDClassifier_front():
     loss = st.selectbox('Loss function:',('hinge', 'log', 'modified_huber', 'squared_hinge', 'perceptron'))
@@ -50,7 +52,8 @@ def KNN_front():
     st.write('Confusion matrix :')
     st.table(stats['confusion_matrix'])
     st.write(str(stats['confusion_matrix']))
-    
+
+# Regression algorithms
 
 def SGDRegressor_front():
     loss = st.selectbox('Loss function:',('huber', 'squared_error', 'epsilon_insensitive', 'squared_epsilon_insensitive'))
@@ -60,6 +63,26 @@ def SGDRegressor_front():
     tol = st.number_input('Tolerance:', value=1e-3)
 
     stats = SGDRegressor_prediction(st.session_state.df_normalized, target, loss, penalty, alpha, max_iter, tol, test_size)
+    st.write('R2 score : ' + str(stats['r2_score']))
+    st.write('Mean squared error : ' + str(stats['mean_squared_error']))
+
+def RidgeRegressor_front():
+    alpha = st.number_input('Alpha:', value=1.0)
+    fit_intercept = st.checkbox('Fit intercept', value=True)
+    max_iter = st.number_input('Max iterations:', value=None, step=1, placeholder='None')
+    tol = st.number_input('Tolerance:', value=1e-4)
+
+    stats = RidgeRegressor_prediction(st.session_state.df_normalized, target, alpha, fit_intercept, max_iter, tol, test_size)
+    st.write('R2 score : ' + str(stats['r2_score']))
+    st.write('Mean squared error : ' + str(stats['mean_squared_error']))
+
+def LassoRegressor_front():
+    alpha = st.number_input('Alpha:', value=1.0)
+    fit_intercept = st.checkbox('Fit intercept', value=True)
+    max_iter = st.number_input('Max iterations:', value=1000)
+    tol = st.number_input('Tolerance:', value=1e-4)
+
+    stats = LassoRegressor_prediction(st.session_state.df_normalized, target, alpha, fit_intercept, max_iter, tol, test_size)
     st.write('R2 score : ' + str(stats['r2_score']))
     st.write('Mean squared error : ' + str(stats['mean_squared_error']))
 
@@ -85,7 +108,7 @@ else:
             exit()
             
     elif(predictionType == 'Regression'):
-        prediction_algorithm = st.radio('Choose a prediction algorithm:', ('SGDRegressor', 'RandomForestRegressor', 'KNNRegressor'))
+        prediction_algorithm = st.radio('Choose a prediction algorithm:', ('SGDRegressor', 'RidgeRegressor', 'LassoRegressor'))
         st.subheader(prediction_algorithm)
         st.write('Config the '+str(prediction_algorithm)+' params')
         target = st.selectbox('Target:', st.session_state.df_normalized.columns)
@@ -93,6 +116,10 @@ else:
         
         if prediction_algorithm == 'SGDRegressor':
             SGDRegressor_front()
+        elif prediction_algorithm == 'RidgeRegressor':
+            RidgeRegressor_front()
+        elif prediction_algorithm == 'LassoRegressor':
+            LassoRegressor_front()
         else:
             st.error('Invalid prediction method')
             exit()
