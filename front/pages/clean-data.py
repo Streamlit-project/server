@@ -62,18 +62,20 @@ if df is not None:
       else:
         # Si il ya des variables non numériques dans le dataset, faire un mode ou un kNN
         if(df.select_dtypes(exclude=np.number).shape[1] > 0):
+          
+          st.subheader('1. Replace non numeric missing Values ')   
           string_options = st.selectbox(
-            'Do you want to replace non numeric missing values',
+            '1. Do you want to replace non numeric missing values',
             ('Yes, with Mode', 'No')
           )
-
+          
           if(string_options == 'Yes, with Mode'):
-            st.subheader('Replace Missing Values with Mode')
             not_numeric_columns = df.select_dtypes(exclude=np.number).columns
             df[not_numeric_columns] = df[not_numeric_columns].fillna(df[not_numeric_columns].mode().iloc[0])
           else:
             st.write('No action taken to replace non numeric missing values')
-             
+        
+        st.subheader('2. Replace numeric missing Values ')     
         replace_option = st.selectbox(
           'Choose an option to replace missing values',
           ('Median', 'Mean', 'k-Nearest Neighbors', 'Linear Regression')

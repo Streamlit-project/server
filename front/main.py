@@ -33,6 +33,9 @@ if "step" not in st.session_state:
 if "option_missing_value" not in st.session_state:
     st.session_state.option_missing_value = 'Yes'
 
+if "standardisation_method" not in st.session_state:
+    st.session_state.standardisation_method = 'Min-Max'
+
 ### 1. Exploration des données
 ## Upload CSV
 st.subheader('Input CSV')
@@ -61,5 +64,7 @@ if uploaded_file is not None:
 ## Show dataset
 if st.session_state.dataset is not None:
     show_data()
+    
+
 
 menu()

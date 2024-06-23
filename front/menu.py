@@ -7,14 +7,8 @@ def csvLoad_menu():
     st.sidebar.page_link("pages/clean-data.py", label="II. Clean data")
     if "df_cleaned" in st.session_state :
         st.sidebar.page_link("pages/standardization.py", label="III. Standardization")
-    # st.sidebar.page_link("pages/clustering.py", label="IV. Clustering")
-    # if st.session_state.step in ["admin", "super-admin"]:
-    #     st.sidebar.page_link("pages/admin.py", label="Manage users")
-    #     st.sidebar.page_link(
-    #         "pages/super-admin.py",
-    #         label="Manage admin access",
-    #         disabled=st.session_state.step != "super-admin",
-    # )
+    if "df_normalized" in st.session_state :
+        st.sidebar.page_link("pages/clustering.py", label="IV. Cluster")
 
 
 def csvNotLoad_menu():
