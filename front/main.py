@@ -11,8 +11,6 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from back.main import load_csv
-
 from menu import menu
 import pandas as pd
 from st_aggrid import AgGrid
@@ -22,7 +20,7 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from back.main import show_statistics_for_string_value
+from back.exploration_data_back import show_statistics_for_string_value
 import numpy as np
 
 # Initialize st.session_state.role and st.session_state.role to None

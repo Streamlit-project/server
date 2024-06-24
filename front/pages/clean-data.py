@@ -5,8 +5,7 @@ from st_aggrid import AgGrid
 import pandas as pd
 import numpy as np
 
-from back.main import KNN, linearRegression, load_csv, mean, median, mode
-
+from back.clean_data_back import KNN, linearRegression, mean, median, mode
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
@@ -64,8 +63,7 @@ if df is not None:
 
           if(string_options == 'Yes, with Mode'):
             st.subheader('Replace Missing Values with Mode')
-            not_numeric_columns = df.select_dtypes(exclude=np.number).columns
-            df[not_numeric_columns] = df[not_numeric_columns].fillna(df[not_numeric_columns].mode().iloc[0])
+            df = mode(df)
           else:
             st.write('No action taken to replace non numeric missing values')
              

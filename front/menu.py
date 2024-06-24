@@ -5,6 +5,8 @@ def csvLoad_menu():
     # Show a navigation menu for authenticated users
     st.sidebar.page_link("main.py", label="I. Load/Exploration data")
     st.sidebar.page_link("pages/clean-data.py", label="II. Clean data")
+    st.sidebar.page_link("pages/standardization.py", label="III. Standardization")
+    st.sidebar.page_link("pages/clustering.py", label="IV. Clustering")
     # if st.session_state.step in ["admin", "super-admin"]:
     #     st.sidebar.page_link("pages/admin.py", label="Manage users")
     #     st.sidebar.page_link(
