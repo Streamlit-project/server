@@ -11,7 +11,7 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from back.main import load_csv
+from back.exploration import setup_session_state
 
 from menu import menu
 import pandas as pd
@@ -22,28 +22,11 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from back.main import show_statistics_for_string_value
+from back.exploration import show_statistics_for_string_value
 import numpy as np
 
 # Initialize st.session_state.role and st.session_state.role to None
-if "step" not in st.session_state:
-    st.session_state.step = None
-    st.session_state.dataset = None
-    
-if "option_missing_value" not in st.session_state:
-    st.session_state.option_missing_value = 'Yes'
-
-if "standardisation_method" not in st.session_state:
-    st.session_state.standardisation_method = 'Min-Max'
-    
-if "missing_value_action" not in st.session_state:
-    st.session_state.missing_value_action = 'Remove Rows'
-    
-if "string_options" not in st.session_state:
-    st.session_state.string_options = 'Yes, with Mode'
-    
-if "replace_option" not in st.session_state:
-    st.session_state.replace_option = 'Median'
+setup_session_state()
 
 ### 1. Exploration des données
 ## Upload CSV
@@ -74,6 +57,4 @@ if uploaded_file is not None:
 if st.session_state.dataset is not None:
     show_data()
     
-
-
 menu()

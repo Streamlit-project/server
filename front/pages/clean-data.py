@@ -5,8 +5,7 @@ from st_aggrid import AgGrid
 import pandas as pd
 import numpy as np
 
-from back.main import KNN, linearRegression, load_csv, mean, median, mode
-
+from back.clean_data import KNN, linearRegression, mean, median, mode
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()

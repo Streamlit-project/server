@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 from back.standardization_back import min_max_standardization, z_score_standardization, robust_standardization, hist_plot, box_plot
 
-
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
 
@@ -54,6 +53,7 @@ else:
         index=('Min-Max', 'Z-Score', 'Robust').index(st.session_state.standardisation_method),
         key="selectbox_standardization_method"
         )
+    
     if st.session_state.standardisation_method == 'Min-Max':
         min_max()
     elif st.session_state.standardisation_method == 'Z-Score':
@@ -66,3 +66,10 @@ else:
 
     hist_plot()
     box_plot()
+    
+    st.session_state.algorithme_for_dataset = st.radio(
+        'What do you want to do with your dataset:', 
+        (None, 'Clustering', 'Prediction'),
+        index=(None, 'Clustering', 'Prediction').index(st.session_state.algorithme_for_dataset),
+        key="selectbox_algorithme_for_dataset"
+        )
