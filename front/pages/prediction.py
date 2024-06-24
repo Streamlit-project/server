@@ -95,8 +95,13 @@ else:
         st.subheader(prediction_algorithm)
         st.write('Config the '+str(prediction_algorithm)+' params')
         target = st.selectbox('Target:', st.session_state.df_normalized.columns)
-        test_size = st.number_input('Test size:', value=0.2, step=0.1, max_value=0.9, min_value=0.01)
-        
+
+        if st.session_state.df_normalized[target].nunique() > 2:
+            st.error('The selected target is not compatible with a classification task. Please choose another target.')
+            exit()
+
+        test_size = st.number_input('Test size (%) :', value=20, step=1, max_value=95, min_value=1) / 100
+
         if prediction_algorithm == 'SGDClassifier':
             SGDClassifier_front()
         elif prediction_algorithm == 'RandomForest':
@@ -112,8 +117,8 @@ else:
         st.subheader(prediction_algorithm)
         st.write('Config the '+str(prediction_algorithm)+' params')
         target = st.selectbox('Target:', st.session_state.df_normalized.columns)
-        test_size = st.number_input('Test size:', value=0.2, step=0.1, max_value=0.9, min_value=0.01)
-        
+        test_size = st.number_input('Test size (%) :', value=20, step=1, max_value=95, min_value=1) / 100
+
         if prediction_algorithm == 'SGDRegressor':
             SGDRegressor_front()
         elif prediction_algorithm == 'RidgeRegressor':
