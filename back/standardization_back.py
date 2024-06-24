@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import sklearn.preprocessing as pp
-import scipy.stats
+import seaborn as sns
 
 def deleteNoneNumberColumns(df):
     numeric_columns = df.select_dtypes(include=np.number).columns
@@ -34,14 +34,17 @@ def robust_standardization(df):
     return pd.DataFrame(scaler.transform(df), columns=df.columns)
 
 def hist_plot():
-    df = st.session_state.df_normalized
+    # Obtenir la liste des caractéristiques
+    caracteristiques = st.session_state.dataset.columns.tolist()
+
+    # Créer un widget pour sélectionner la caractéristique
+    caracteristique_selectionnee = st.selectbox('Sélectionnez une caractéristique', caracteristiques)
+
+    # Afficher la distribution de la caractéristique sélectionnée
     fig, ax = plt.subplots()
-    for column in df.columns:
-        if pd.isnull(df[column]).all():
-            continue
-        ax.hist(df[column], bins=50, alpha=0.5, label=column)
-    ax.set_title('Histogram of standardized data')
-    ax.legend()
+    sns.histplot(st.session_state.df_normalized[caracteristique_selectionnee], kde=True, ax=ax)
+    ax.set_xlabel(caracteristique_selectionnee)
+    ax.set_ylabel('Fréquence')
     st.pyplot(fig)
 
 def box_plot():
@@ -51,3 +54,4 @@ def box_plot():
     ax.set_ylabel('Standardized values')
     ax.set_title('Boxplot of standardized data')
     st.pyplot(fig)
+    
