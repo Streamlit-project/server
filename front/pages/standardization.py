@@ -47,12 +47,18 @@ def robust():
 if 'df_cleaned' not in st.session_state:
     st.error('Please import and clean dataset before standardizing it.')
 else:
-    standardisation_method = st.radio('Choose a standardization method:', ('Min-Max', 'Z-Score', 'Robust'))
-    if standardisation_method == 'Min-Max':
+    st.session_state.standardisation_method = st.radio(
+        'Choose a standardization method:', 
+        ('Min-Max', 'Z-Score', 'Robust'),
+        index=('Min-Max', 'Z-Score', 'Robust').index(st.session_state.standardisation_method),
+        key="selectbox_standardization_method"
+        )
+    
+    if st.session_state.standardisation_method == 'Min-Max':
         min_max()
-    elif standardisation_method == 'Z-Score':
+    elif st.session_state.standardisation_method == 'Z-Score':
         z_score()
-    elif standardisation_method == 'Robust':
+    elif st.session_state.standardisation_method == 'Robust':
         robust()
     else:
         st.error('Invalid standardization method')
@@ -60,3 +66,10 @@ else:
 
     hist_plot()
     box_plot()
+    
+    st.session_state.algorithme_for_dataset = st.radio(
+        'What do you want to do with your dataset:', 
+        (None, 'Clustering', 'Prediction'),
+        index=(None, 'Clustering', 'Prediction').index(st.session_state.algorithme_for_dataset),
+        key="selectbox_algorithme_for_dataset"
+        )

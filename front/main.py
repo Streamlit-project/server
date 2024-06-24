@@ -11,6 +11,9 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
+from back.exploration_data_back import setup_session_state
+from back.exploration import load_csv
+
 from menu import menu
 import pandas as pd
 from st_aggrid import AgGrid
@@ -24,9 +27,7 @@ from back.exploration_data_back import show_statistics_for_string_value
 import numpy as np
 
 # Initialize st.session_state.role and st.session_state.role to None
-if "step" not in st.session_state:
-    st.session_state.step = None
-    st.session_state.dataset = None
+setup_session_state()
 
 ### 1. Exploration des données
 ## Upload CSV
@@ -56,5 +57,5 @@ if uploaded_file is not None:
 ## Show dataset
 if st.session_state.dataset is not None:
     show_data()
-
+    
 menu()
