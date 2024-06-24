@@ -1,4 +1,4 @@
-from collections import Counter, defaultdict
+from collections import Counter
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -26,11 +26,5 @@ def perform_pca_and_kmeans(data, n_clusters=3, n_components=None, init_method='k
 
     # Compter le nombre de points dans chaque cluster
     points_count = dict(Counter(labels))
-
-    # Calculer les centres de chaque cluster dans l'espace original
-    original_centers = pca.inverse_transform(centroids)
     
-    # Convertir les centres de clusters en listes pour être compatibles avec JSON
-    original_centers = original_centers.tolist()
-    
-    return X, labels, centroids, points_count, original_centers
+    return X, labels, centroids, points_count

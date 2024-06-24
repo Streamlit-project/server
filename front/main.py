@@ -11,8 +11,7 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from back.exploration_data_back import setup_session_state
-from back.exploration import load_csv
+from back.exploration import setup_session_state
 
 from menu import menu
 import pandas as pd

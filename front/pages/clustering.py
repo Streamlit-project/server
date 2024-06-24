@@ -40,7 +40,7 @@ if df is not None:
 
         # Appliquer le clustering K-means avec PCA en utilisant la fonction backend
         selected_data = df[columns].values
-        X, labels, centroids, original_centers, points_count = perform_pca_and_kmeans(selected_data, n_clusters=n_clusters, n_components=n_components, init_method=init_method, max_iter=max_iter, n_init=n_init)
+        X, labels, centroids, points_count = perform_pca_and_kmeans(selected_data, n_clusters=n_clusters, n_components=n_components, init_method=init_method, max_iter=max_iter, n_init=n_init)
 
         # Vérifier le nombre de composantes principales dans X
         if n_components < 2:
@@ -78,20 +78,6 @@ if df is not None:
             # Affichage du DataFrame dans Streamlit
             st.write("Nombre de points dans chaque cluster :")
             st.table(df)
-
-            # Créer un DataFrame à partir des données transformées par PCA (X) et des étiquettes de KMeans (labels)
-            df = pd.DataFrame(data=X, columns=['PCA '+ str(i) for i in range(1, X.shape[1]+1)])
-            df['Cluster'] = labels
-
-            # Afficher le DataFrame avec les composantes principales et les étiquettes de KMeans
-            st.dataframe(df)
-
-            # Si vous voulez ajouter les données originales, vous pouvez les concaténer avec le DataFrame existant
-            df_original = pd.DataFrame(data=selected_data, columns=[labels for labels in columns])
-            df = pd.concat([df, df_original], axis=1)
-
-            # Afficher le DataFrame avec les composantes principales, les étiquettes de KMeans et les données originales
-            st.dataframe(df)
 
     else:
         st.write("Veuillez sélectionner les colonnes à utiliser pour le clustering.")
