@@ -52,7 +52,19 @@ if df is not None:
                 st.error(f"Le nombre de composantes principales doit être inférieur ou égal au nombre de caractéristiques (nombres de composantes principales : {n_components}, nombre de caractéristiques : {n_features}).")
             else:
                 X, labels, centroids, points_count = perform_pca_and_kmeans(selected_data, n_clusters=n_clusters, n_components=n_components, init_method=init_method, max_iter=max_iter, n_init=n_init)
-
+                
+                # Compter le nombre point par cluster
+                unique_labels, counts = np.unique(labels, return_counts=True)
+                # st.write("Centroids des clusters:", st.table(np.unique(labels, return_counts=True)))
+                number_point_ = {
+                    'Cluster': [],
+                    'Nombre de points': []
+                ,}
+        
+                for i in unique_labels:
+                    number_point_['Cluster'].append(f"Cluster {i}")
+                    number_point_['Nombre de points'].append(counts[i])
+                
                 # Vérifier le nombre de composantes principales dans X
                 if n_components < 2:
                     st.write("Le nombre de composantes principales doit être supérieur ou égal à 2 pour afficher les résultats en 2D.")
@@ -110,6 +122,11 @@ if df is not None:
                     # Affichage du DataFrame dans Streamlit
                     st.write("Centroïds de chaque cluster :")
                     st.table(df)
+                    
+                    # Affichage du DataFrame dans Streamlit
+                    st.write("Nombre de points dans chaque cluster :")
+                    st.table(number_point_)
+
         else:
             st.write("Veuillez sélectionner les colonnes à utiliser pour le clustering.")
     else:
