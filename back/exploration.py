@@ -85,6 +85,9 @@ def setup_session_state():
         
     if "replace_option" not in st.session_state:
         st.session_state.replace_option = 'Median'
+
+    if "df_normalized" not in st.session_state:
+        st.session_state.df_normalized = None
         
     if "algorithme_for_dataset" not in st.session_state:
         st.session_state.algorithme_for_dataset = None

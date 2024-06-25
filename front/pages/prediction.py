@@ -23,10 +23,11 @@ def SGDClassifier_front():
     stats = SGDClassifier_prediction(target, loss, penalty, alpha, max_iter, tol, test_size)
     
     # Afficher le raport de classfication
+    st.write('Rapport de classification :')
     st.dataframe(stats['dataframe_cr']) 
     
     # Créer un DataFrame à partir de la matrice de confusion
-    st.write('Confusion matrix :')
+    st.write('Matrice de confusion :')
     df_cm = pd.DataFrame(stats['confusion_matrix'], columns=stats['y_unique'], index=stats['y_unique'])
 
     # Ajouter les noms des classes aux axes
@@ -48,10 +49,11 @@ def RandomForest_front():
     stats = RandomForest_prediction(target, n_estimators, max_depth, min_samples_split, min_samples_leaf, max_features, max_leaf_nodes, test_size)
     
     # Afficher le raport de classfication
+    st.write('Rapport de classification :')
     st.dataframe(stats['dataframe_cr']) 
     
     # Créer un DataFrame à partir de la matrice de confusion
-    st.write('Confusion matrix :')
+    st.write('Matrice de confusion :')
     df_cm = pd.DataFrame(stats['confusion_matrix'], columns=stats['y_unique'], index=stats['y_unique'])
 
     # Ajouter les noms des classes aux axes
@@ -71,10 +73,11 @@ def KNN_front():
     stats = KNN_prediction(target, n_neighbors, weights, algorithm, leaf_size, test_size)
     
     # Afficher le raport de classfication
+    st.write('Rapport de classification :')
     st.dataframe(stats['dataframe_cr']) 
     
     # Créer un DataFrame à partir de la matrice de confusion
-    st.write('Confusion matrix :')
+    st.write('Matrice de confusion :')
     df_cm = pd.DataFrame(stats['confusion_matrix'], columns=stats['y_unique'], index=stats['y_unique'])
 
     # Ajouter les noms des classes aux axes
