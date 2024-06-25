@@ -72,7 +72,7 @@ def setup_session_state():
         st.session_state.dataset = None
     
     if "option_missing_value" not in st.session_state:
-        st.session_state.option_missing_value = 'Yes'
+        st.session_state.option_missing_value = None
 
     if "standardisation_method" not in st.session_state:
         st.session_state.standardisation_method = 'Min-Max'
@@ -88,3 +88,6 @@ def setup_session_state():
         
     if "algorithme_for_dataset" not in st.session_state:
         st.session_state.algorithme_for_dataset = None
+        
+    if "df_normalized" not in st.session_state:
+        st.session_state.df_normalized = None

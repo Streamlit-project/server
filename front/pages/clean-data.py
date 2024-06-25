@@ -29,8 +29,8 @@ if df is not None:
       st.header('Do you want to remove missing values ?')      
       st.session_state.option_missing_value = st.selectbox(
         'Select yes or no',
-        ('Yes', 'No'),
-        index=('Yes', 'No').index(st.session_state.option_missing_value),
+        (None, 'Yes', 'No'),
+        index=(None,'Yes', 'No').index(st.session_state.option_missing_value),
         key="selectbox_missing_value"
       )
 

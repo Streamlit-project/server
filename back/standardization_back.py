@@ -35,7 +35,7 @@ def robust_standardization(df):
 
 def hist_plot():
     # Obtenir la liste des caractéristiques
-    caracteristiques = st.session_state.dataset.columns.tolist()
+    caracteristiques = st.session_state.df_normalized.columns.tolist()
 
     # Créer un widget pour sélectionner la caractéristique
     caracteristique_selectionnee = st.selectbox('Sélectionnez une caractéristique', caracteristiques)

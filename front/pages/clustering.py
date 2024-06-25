@@ -12,7 +12,7 @@ st.title('Clustering K-means')
 
 st.sidebar.header('Paramètres de l\'algorithme')
 
-df = st.session_state.dataset
+df = st.session_state.df_normalized
 
 if df is not None:
     # Afficher un aperçu des données
@@ -42,6 +42,18 @@ if df is not None:
         selected_data = df[columns].values
         X, labels, centroids, points_count = perform_pca_and_kmeans(selected_data, n_clusters=n_clusters, n_components=n_components, init_method=init_method, max_iter=max_iter, n_init=n_init)
 
+        # Compter le nombre point par cluster
+        unique_labels, counts = np.unique(labels, return_counts=True)
+        # st.write("Centroids des clusters:", st.table(np.unique(labels, return_counts=True)))
+        number_point_ = {
+            'Cluster': [],
+            'Nombre de points': []
+        ,}
+        
+        for i in unique_labels:
+            number_point_['Cluster'].append(f"Cluster {i}")
+            number_point_['Nombre de points'].append(counts[i])
+        
         # Vérifier le nombre de composantes principales dans X
         if n_components < 2:
             st.write("Le nombre de composantes principales doit être supérieur ou égal à 2 pour afficher les résultats en 2D.")
@@ -61,23 +73,9 @@ if df is not None:
 
             st.write("Centroids des clusters:", centroids)
 
-            # Conversion des données en DataFrame pour un affichage sous forme de tableau
-            clusters_data = {
-                'Cluster': [],
-                'Dimension 1': [],
-                'Dimension 2': [],
-            }
-
-            for i in range(n_clusters):
-                clusters_data['Cluster'].append(f"Cluster {i}")
-                clusters_data['Dimension 1'].append(centroids[i][0])
-                clusters_data['Dimension 2'].append(centroids[i][1])
-
-            df = pd.DataFrame(data=clusters_data)
-
             # Affichage du DataFrame dans Streamlit
             st.write("Nombre de points dans chaque cluster :")
-            st.table(df)
+            st.table(number_point_)
 
     else:
         st.write("Veuillez sélectionner les colonnes à utiliser pour le clustering.")

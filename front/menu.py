@@ -4,15 +4,13 @@ import streamlit as st
 def csvLoad_menu():
     st.sidebar.page_link("main.py", label="I. Load/Exploration data")
     st.sidebar.page_link("pages/clean-data.py", label="II. Clean data")
-    st.sidebar.page_link("pages/standardization.py", label="III. Standardization")
-    st.sidebar.page_link("pages/clustering.py", label="IV. Clustering")
-    # if st.session_state.step in ["admin", "super-admin"]:
-    #     st.sidebar.page_link("pages/admin.py", label="Manage users")
-    #     st.sidebar.page_link(
-    #         "pages/super-admin.py",
-    #         label="Manage admin access",
-    #         disabled=st.session_state.step != "super-admin",
-    # )
+    if st.session_state.option_missing_value != None :
+        st.sidebar.page_link("pages/standardization.py", label="III. Standardization")
+    if st.session_state.algorithme_for_dataset != None :
+        if st.session_state.algorithme_for_dataset == 'Clustering' :
+            st.sidebar.page_link("pages/clustering.py", label="IV. Clustering")
+        if st.session_state.algorithme_for_dataset == 'Prediction' :
+            st.sidebar.page_link("pages/prediction.py", label="IV. Prediction")
 
 
 def csvNotLoad_menu():
