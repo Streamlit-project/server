@@ -55,3 +55,16 @@ def box_plot():
     ax.set_title('Boxplot of standardized data')
     st.pyplot(fig)
     
+def matrice_correlation():
+    # Calculer la matrice de corrélation
+    corr_matrix = st.session_state.df_normalized.corr()
+
+    # Afficher la matrice de corrélation
+    st.subheader("Matrice de Corrélation")
+    st.write(corr_matrix)
+
+    # Visualiser la matrice de corrélation avec une heatmap
+    st.subheader("Heatmap de la Matrice de Corrélation")
+    fig, ax = plt.subplots(figsize=(10, 8))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax)
+    st.pyplot(fig)

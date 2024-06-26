@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from st_aggrid import AgGrid
 import pandas as pd
 import numpy as np
-from back.standardization_back import min_max_standardization, z_score_standardization, robust_standardization, hist_plot, box_plot
+from back.standardization_back import min_max_standardization, z_score_standardization, robust_standardization, hist_plot, box_plot, matrice_correlation
 
 # Redirect to app.py if not logged in, otherwise show the navigation menu
 menu_with_redirect()
@@ -66,6 +66,7 @@ else:
 
     hist_plot()
     box_plot()
+    matrice_correlation()
     
     st.session_state.algorithme_for_dataset = st.radio(
         'What do you want to do with your dataset:', 

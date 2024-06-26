@@ -126,7 +126,10 @@ if df is not None:
                     # Affichage du DataFrame dans Streamlit
                     st.write("Nombre de points dans chaque cluster :")
                     st.table(number_point_)
-
+                    
+                    # Coefficient de silhouette
+                    silhouette_coefficient = metrics.silhouette_score(X, labels)
+                    st.write(f'Silhouette Coefficient: **{silhouette_coefficient:.3f}**')       
         else:
             st.write("Veuillez sélectionner les colonnes à utiliser pour le clustering.")
     else:
